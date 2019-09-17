@@ -1,30 +1,18 @@
 
-
-/*function clicOn() {
-    onclick=document.getElementById('myImage').src='https://www.w3schools.com/js/pic_bulbon.gif';
-    console.log("clic !");
-
-
-function clicOff() {
-    onclick=document.getElementById('myImage').src='https://www.w3schools.com/js/pic_bulboff.gif';
-    console.log("clic !");
-}
-
-let bouton1Elt = document.getElementById("bouton1");
-bouton1Elt.addEventListener("click", clicOn);
-let bouton2Elt = document.getElementById("bouton2");
-bouton2Elt.addEventListener("click", clicOff); */
 let buttonElt = document.getElementById('bouton1');
+// création d'une variable qui contient l'élément bouton1
 buttonElt.addEventListener("click", clicOnOff);
-// ajout d'un événement qui éxécute la fonction
+// ajout d'un événement qui éxécute la fonction clicOnOff lors du clic sur le boutton
 let myImageElt = document.getElementById('myImage');
-
+// ajout d'une variable qui va contenir l'éléments myimage
 
 // fonction qui gére le on off
 function clicOnOff() {
+  // si myImage.src est égale a l'image éteinte alors allume la!
   if (myImageElt.src=="https://www.w3schools.com/js/pic_bulboff.gif") {
     myImageElt.src='https://www.w3schools.com/js/pic_bulbon.gif';
     console.log("clic !");
+    //sinon éteint la
   } else {
     myImageElt.src='https://www.w3schools.com/js/pic_bulboff.gif';
     console.log("clic !");
