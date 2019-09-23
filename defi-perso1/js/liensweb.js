@@ -1,5 +1,5 @@
 
-//liste des liens a afficher 
+//liste des liens a afficher
 var listeLiens = [
     {
         titre: "So Foot",
@@ -21,7 +21,7 @@ var listeLiens = [
 creerBoutton();
 creerFormulaire();
 
-// on creer ici une fonction qui va prendre en paramétre 
+// on creer ici une fonction qui va prendre en paramétre
 // les liens a afficher
 function creerElementLien(lien){
 
@@ -58,7 +58,7 @@ function creerElementLien(lien){
 
 
 
-// on déclare la variable "contenu" pour qu'on puisse 
+// on déclare la variable "contenu" pour qu'on puisse
 // par la suite inserrer les éléments lien plusieurs fois
 let contenu = document.getElementById("contenu");
 
@@ -68,7 +68,7 @@ let contenu = document.getElementById("contenu");
 // Car elle va parcourir tout les éléments du tableau pour nous.
 // comme une boucle For ;)
 // on fini par creer un dernière variable pour que celle ci creer
-// les éléments en boucle sans oublier le paramétre a prendre en compte!  
+// les éléments en boucle sans oublier le paramétre a prendre en compte!
 listeLiens.forEach(function (lien) {
     var elementLien = creerElementLien(lien);
     contenu.appendChild(elementLien);
@@ -125,10 +125,10 @@ function creerFormulaire() {
     p1Elt.style.marginRight = "15px";
     formElt.appendChild(p1Elt);
     let label1Elt = document.createElement("label");
-    label1Elt.for = "pseudo";
     p1Elt.appendChild(label1Elt);
     let input1Elt = document.createElement("input");
     input1Elt.type = "text";
+    input1Elt.id = "nom";
     input1Elt.required = "true";
     input1Elt.style.borderRadius = "3px";
     input1Elt.style.border = "1px solid #c5c5c5";
@@ -146,6 +146,7 @@ function creerFormulaire() {
     let label2Elt = document.createElement("label");
     p2Elt.appendChild(label2Elt);
     let input2Elt = document.createElement("input");
+    input2Elt.id = "titre-lien";
     input2Elt.type = "text";
     input2Elt.required = "true";
     input2Elt.style.borderRadius = "3px";
@@ -156,7 +157,7 @@ function creerFormulaire() {
     p2Elt.appendChild(input2Elt);
     let span2Elt = document.createElement("span");
     p2Elt.appendChild(span2Elt);
-    
+
     let p3Elt = document.createElement("p");
     p3Elt.style.width = "30%";
     p3Elt.style.marginRight = "15px";
@@ -165,6 +166,7 @@ function creerFormulaire() {
     p3Elt.appendChild(label3Elt);
     let input3Elt = document.createElement("input");
     input3Elt.type = "text";
+    input3Elt.id = "lien";
     input3Elt.required = "true";
     input3Elt.style.borderRadius = "3px";
     input3Elt.style.border = "1px solid #c5c5c5";
@@ -187,12 +189,25 @@ function creerFormulaire() {
     submitElt.style.boxShadow = "0px 1px 2px dimgrey";
     formElt.appendChild(submitElt);
 
-    //vérification des données saisi lors de l'envoi
+    //comparé si http:// ou https:// est bien écrit sinon rajouté http://
+
+    document.getElementById("lien").addEventListener("input", function(e){
+      var httpElt = "http://, https://";
+      if (e.target.value.indexOf("http://") === -1){
+        // le text saisi ne contiens pas http:// alors:
+        console.log("il n'y a pas de http://");
+      }
+      if (e.target.value.indexOf("https://") === -1){
+        // le text saisi ne contiens pas http:// alors:
+        console.log("il n'y a pas de https://");
+      }
+    })
+
 
 
 
     return formElt;
-    
+
 }
 
 
