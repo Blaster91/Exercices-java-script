@@ -17,6 +17,21 @@ var listeLiens = [
         auteur: "annie.zette"
     }
 ];
+
+
+function ajouterLien() {
+  var titre = "lolilolllll";
+  listeLiens.push({
+    titre: titre,
+    url: "http://www.trololol.com",
+    auteur: "lolilol"
+  })
+  return listeLiens;
+}
+ajouterLien();
+
+
+
 // appelle de cette fonction
 creerBoutton();
 creerFormulaire();
@@ -72,8 +87,7 @@ let contenu = document.getElementById("contenu");
 listeLiens.forEach(function (lien) {
     var elementLien = creerElementLien(lien);
     contenu.appendChild(elementLien);
-});
-
+})
 
 
 
@@ -114,6 +128,7 @@ function creerFormulaire() {
 
     //création du formulaire
     let formElt = document.createElement("form");
+    formElt.id = "formulaireLien";
     formElt.style.display = "none";
     formElt.style.alignItems = "center";
     let contenu = document.getElementById("contenu");
@@ -188,6 +203,13 @@ function creerFormulaire() {
     submitElt.style.fontWeight = "bold";
     submitElt.style.boxShadow = "0px 1px 2px dimgrey";
     formElt.appendChild(submitElt);
+    //annulé événement submit et récupéré les valeurs
+    formElt.addEventListener("submit", function(e){
+      e.preventDefault();
+      alert("formulaire envoyé");
+    })
+
+
 
     //comparé si http:// ou https:// est bien écrit sinon rajouté http://
 
@@ -207,6 +229,15 @@ function creerFormulaire() {
 
 
     return formElt;
+
+}
+
+function creerNewLien () {
+
+
+
+
+
 
 }
 
