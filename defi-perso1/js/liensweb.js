@@ -1,4 +1,4 @@
-
+divTemporaire();
 //liste des liens a afficher
 var listeLiens = [
     {
@@ -52,7 +52,8 @@ function creerElementLien(lien){
     //création du conteneur qui va tenir les éléments creer juste avant
     let divElt = document.createElement("div")
     divElt.style.backgroundColor = "white";
-    divElt.classList.add("lien")
+
+    divElt.classList.add("lien");
     divElt.appendChild(titreElt);
     divElt.appendChild(auteurElt);
     document.body.appendChild(divElt);
@@ -78,9 +79,8 @@ let contenu = document.getElementById("contenu");
 listeLiens.forEach(function (lien) {
     var elementLien = creerElementLien(lien);
     contenu.appendChild(elementLien);
+
 })
-
-
 
 //maintenant on creer un nouveau boutton qui va creer un événement
 function creerBoutton() {
@@ -203,14 +203,34 @@ function creerFormulaire() {
       let titre = document.getElementById("titre-lien");
       let lien = document.getElementById("lien");
 
+      let divRefresh = document.getElementsByClassName("lien");
+      divRefresh.innerHTML = "";
 
         listeLiens.push({
           titre: titre.value,
           url: lien.value,
           auteur: nom.value
         })
+        formElt.style.display = "none";
+
+        listeLiens.forEach(function (lien) {
+          let divRefresh = document.getElementById('contenu');
+          divRefresh.innerHTML = "";
+
+        })
+        listeLiens.forEach(function (lien) {
+
+            var elementLien = creerElementLien(lien);
+            contenu.appendChild(elementLien);
+
+        })
+
+
+
 
     })
+
+
 
 
 
@@ -231,7 +251,23 @@ function creerFormulaire() {
 
 }
 
-
+function divTemporaire() {
+  let divContainer = document.createElement("div");
+  let titreActivity = document.createElement('h1');
+  titreActivity.textContent = "Activité 2";
+  divContainer.appendChild(titreActivity);
+  document.body.appendChild(divContainer);
+  let divTempElt = document.createElement("div");
+  divContainer.appendChild(divTempElt);
+return divContainer;
+}
+function bodyChangeCss(){
+  bodyElt = document.body;
+  bodyElt.style.display = "flex";
+  bodyElt.style.flexDirection = "column-reverse";
+  return bodyElt;
+}
+bodyChangeCss();
 
 
 
