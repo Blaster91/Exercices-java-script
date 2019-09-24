@@ -19,16 +19,7 @@ var listeLiens = [
 ];
 
 
-function ajouterLien() {
-  var titre = "lolilolllll";
-  listeLiens.push({
-    titre: titre,
-    url: "http://www.trololol.com",
-    auteur: "lolilol"
-  })
-  return listeLiens;
-}
-ajouterLien();
+
 
 
 
@@ -207,6 +198,18 @@ function creerFormulaire() {
     formElt.addEventListener("submit", function(e){
       e.preventDefault();
       alert("formulaire envoyé");
+
+      let nom = document.getElementById("nom");
+      let titre = document.getElementById("titre-lien");
+      let lien = document.getElementById("lien");
+
+
+        listeLiens.push({
+          titre: titre.value,
+          url: lien.value,
+          auteur: nom.value
+        })
+
     })
 
 
@@ -224,23 +227,9 @@ function creerFormulaire() {
         console.log("il n'y a pas de https://");
       }
     })
-
-
-
-
     return formElt;
 
 }
-
-function creerNewLien () {
-
-
-
-
-
-
-}
-
 
 
 
