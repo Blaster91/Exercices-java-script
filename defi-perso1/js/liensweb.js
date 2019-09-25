@@ -50,13 +50,16 @@ function creerElementLien(lien){
     auteurElt.textContent = "Ajouté par " + lien.auteur;
 
     //création du conteneur qui va tenir les éléments creer juste avant
-    let divElt = document.createElement("div")
-    divElt.style.backgroundColor = "white";
+    let sousDiv = document.createElement("div");
 
-    divElt.classList.add("lien");
-    divElt.appendChild(titreElt);
-    divElt.appendChild(auteurElt);
+
+    sousDiv.style.backgroundColor = "white";
+
+    sousDiv.classList.add("lien");
+    sousDiv.appendChild(titreElt);
+    sousDiv.appendChild(auteurElt);
     document.body.appendChild(divElt);
+    divElt.appendChild(sousDiv);
 
     // on retourne divElt qui va contenir tout les éléments
     return divElt;
@@ -68,6 +71,10 @@ function creerElementLien(lien){
 // on déclare la variable "contenu" pour qu'on puisse
 // par la suite inserrer les éléments lien plusieurs fois
 let contenu = document.getElementById("contenu");
+let divElt = document.createElement("div");
+divElt.style.display = "flex";
+divElt.style.flexDirection = "column-reverse";
+divElt.id = "sous-div";
 
 
 
@@ -86,6 +93,7 @@ listeLiens.forEach(function (lien) {
 function creerBoutton() {
     let contenu = document.getElementById("contenu");
     let buttonElt = document.createElement("button");
+    buttonElt.id = "button-ajouter-lien";
     buttonElt.textContent = "Ajouter un lien";
     buttonElt.style.display = "block";
     buttonElt.style.fontWeight = "bold";
@@ -199,6 +207,8 @@ function creerFormulaire() {
       e.preventDefault();
       alert("formulaire envoyé");
 
+      let buttonAjouterLienREfresh = document.getElementById("button-ajouter-lien");
+      buttonAjouterLienREfresh.style.display = "block";
       let nom = document.getElementById("nom");
       let titre = document.getElementById("titre-lien");
       let lien = document.getElementById("lien");
@@ -214,7 +224,7 @@ function creerFormulaire() {
         formElt.style.display = "none";
 
         listeLiens.forEach(function (lien) {
-          let divRefresh = document.getElementById('contenu');
+          let divRefresh = document.getElementById('sous-div');
           divRefresh.innerHTML = "";
 
         })
@@ -224,9 +234,6 @@ function creerFormulaire() {
             contenu.appendChild(elementLien);
 
         })
-
-
-
 
     })
 
