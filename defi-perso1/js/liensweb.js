@@ -1,15 +1,15 @@
+// ici je déclare le container ou la div temporaire va apparaitre
 let divContainer = document.createElement("div");
 divContainer.style.display = "flex";
 divContainer.style.justifyContent = "center";
 divContainer.style.flexDirection = "column";
 divContainer.style.alignItems = "center";
 
+// ici le titre
 let titreActivity = document.createElement('h1');
 titreActivity.textContent = "Activité 2";
 divContainer.appendChild(titreActivity);
 document.body.appendChild(divContainer);
-
-
 
 //liste des liens a afficher
 var listeLiens = [{
@@ -28,13 +28,8 @@ var listeLiens = [{
     auteur: "annie.zette"
   }
 ];
-
-
-
-
-
-
-// appelle de cette fonction
+// appelle de ces fonctions
+bodyChangeCss();
 creerBoutton();
 creerFormulaire();
 
@@ -62,10 +57,7 @@ function creerElementLien(lien) {
 
   //création du conteneur qui va tenir les éléments creer juste avant
   let sousDiv = document.createElement("div");
-
-
   sousDiv.style.backgroundColor = "white";
-
   sousDiv.classList.add("lien");
   sousDiv.appendChild(titreElt);
   sousDiv.appendChild(auteurElt);
@@ -75,10 +67,6 @@ function creerElementLien(lien) {
   // on retourne divElt qui va contenir tout les éléments
   return divElt;
 }
-// les problémes sont resolu notre usine a lien est terminé :)
-
-
-
 // on déclare la variable "contenu" pour qu'on puisse
 // par la suite inserrer les éléments lien plusieurs fois
 let contenu = document.getElementById("contenu");
@@ -87,20 +75,17 @@ divElt.style.display = "flex";
 divElt.style.flexDirection = "column-reverse";
 divElt.id = "sous-div";
 
-
-
-// ici grace à la fonction forEach on gagne quelques lignes de code :)
+// ici grace à la fonction forEach on gagne quelques lignes de code
 // Car elle va parcourir tout les éléments du tableau pour nous.
-// comme une boucle For ;)
+// un peu comme une boucle For
 // on fini par creer un dernière variable pour que celle ci creer
-// les éléments en boucle sans oublier le paramétre a prendre en compte!
+// les éléments en boucle sans oublier le paramétre a prendre en compte
 listeLiens.forEach(function(lien) {
   var elementLien = creerElementLien(lien);
   contenu.appendChild(elementLien);
-
 })
-
-//maintenant on creer un nouveau boutton qui va creer un événement
+//maintenant on creer un nouveau boutton qui sera en add event listener "click" c'est a dire
+// que si on clic sur le bouton addEventListener pourra executer la fonction qui suit.
 function creerBoutton() {
   let contenu = document.getElementById("contenu");
   let buttonElt = document.createElement("button");
@@ -124,17 +109,17 @@ function creerBoutton() {
       buttonElt.style.display = "none";
     }
   })
-
   return buttonElt;
 }
+// la je déclare la div temporaire pour qu'elle soit accessible dans la fonction qui la rendra temporaire
+let divTempElt = document.createElement("div");
+divTempElt.id = "temparyDiv";
+divContainer.appendChild(divTempElt);
 
-
-
-
-// on ajoute un nouveau formulaire
+// ici j'ajoute une fonction qui va creer le formulaire
 function creerFormulaire() {
 
-  //création du formulaire
+  //création de la balise form
   let formElt = document.createElement("form");
   formElt.id = "formulaireLien";
   formElt.style.display = "none";
@@ -143,7 +128,7 @@ function creerFormulaire() {
   let contenu = document.getElementById("contenu");
   contenu.appendChild(formElt);
 
-  //création du premier champ
+  //création des champs input
   let p1Elt = document.createElement("p");
   p1Elt.style.width = "20%";
   p1Elt.style.marginRight = "15px";
@@ -201,6 +186,7 @@ function creerFormulaire() {
   let span3Elt = document.createElement("span");
   p3Elt.appendChild(span3Elt);
 
+// création du boutton submit
   let submitElt = document.createElement("input");
   submitElt.type = "submit";
   submitElt.value = "Ajouter";
@@ -212,49 +198,39 @@ function creerFormulaire() {
   submitElt.style.fontWeight = "bold";
   submitElt.style.boxShadow = "0px 1px 2px dimgrey";
   formElt.appendChild(submitElt);
-  //annulé événement submit et récupéré les valeurs
+  //ici on annule ce qui ce passe par défault quand on clic sur le boutton submit. c'est a dire que le bouton ne cherchera pas à envoyé les //infos sur une page php
   formElt.addEventListener("submit", function(e) {
     e.preventDefault();
-    alert("formulaire envoyé");
-
-    let buttonAjouterLienREfresh = document.getElementById("button-ajouter-lien");
-    buttonAjouterLienREfresh.style.display = "block";
+    //la je déclare les varables qui vont contenir les valeurs inscrite dans le formulaire lors de l'événement submit
     let nom = document.getElementById("nom");
     let titre = document.getElementById("titre-lien");
     let lien = document.getElementById("lien");
-
-    let divRefresh = document.getElementsByClassName("lien");
-    divRefresh.innerHTML = "";
-
+//ici les valeur récupéré du formulaire son push dans listeLien
     listeLiens.push({
       titre: titre.value,
       url: lien.value,
       auteur: nom.value
     })
+    //on fait disparaitre le formulaire
     formElt.style.display = "none";
-
+//on efface un par un les éléments
     listeLiens.forEach(function(lien) {
       let divRefresh = document.getElementById('sous-div');
       divRefresh.innerHTML = "";
-
     })
+    //on recreer un par un les éléments suivi du nouveau
     listeLiens.forEach(function(lien) {
-
       var elementLien = creerElementLien(lien);
       contenu.appendChild(elementLien);
-
     })
 
-
-
     function divTemporaire() {
-      let divTempElt = document.createElement("div");
-      divTempElt.id = "temparyDiv";
       divTempElt.style.width = "100%";
       divTempElt.style.display = "flex";
       divTempElt.style.justifyContent = "center";
       let sousDivTempEly = document.createElement("div")
       sousDivTempEly.id = "sous-div-temp";
+      sousDivTempEly.style.marginBottom = "20px";
       sousDivTempEly.style.display = "flex";
       sousDivTempEly.style.justifyContent = "center";
       sousDivTempEly.style.flexDirection = "column";
@@ -264,42 +240,28 @@ function creerFormulaire() {
       sousDivTempEly.style.borderRadius = "5px";
       sousDivTempEly.style.paddingLeft = "50px";
       sousDivTempEly.style.boxShadow = "0px 0px 15px #d6d6d6";
-
-
-
-      divContainer.appendChild(divTempElt);
       divTempElt.appendChild(sousDivTempEly);
       let texteDivTempElt = document.createElement("p");
       texteDivTempElt.textContent = 'Le lien "' + titre.value + '" a bien été ajouté ';
       texteDivTempElt.style.color = "#2c7aac";
       texteDivTempElt.style.fontSize = "1.1em";
       sousDivTempEly.appendChild(texteDivTempElt);
-
-
-
-
-
-
-
       return divContainer;
     }
 divTemporaire();
 divHidden();
 function divHidden() {
-  intervalID = setInterval(function(){
+  intervalID = setTimeout(function(){
     let selectDiv = document.getElementById("temparyDiv");
     selectDiv.innerHTML = "";
+    // ici je récupére le bouton ajouter un lien pour qu'il puisse réaparaitre que maintenant car il est inutilisable tant que la div
+    //temporaire ne réaparait pas
+        let buttonAjouterLienREfresh = document.getElementById("button-ajouter-lien");
+        buttonAjouterLienREfresh.style.display = "block";
   }, 2000);
 }
-
   })
-
-
-
-
-
   //comparé si http:// ou https:// est bien écrit sinon rajouté http://
-
   document.getElementById("lien").addEventListener("input", function(e) {
     var httpElt = "http://, https://";
     if (e.target.value.indexOf("http://") === -1) {
@@ -312,22 +274,11 @@ function divHidden() {
     }
   })
   return formElt;
-
 }
-
-
+// ici je change quelques propriété CSS sur body
 function bodyChangeCss() {
   bodyElt = document.body;
   bodyElt.style.display = "flex";
   bodyElt.style.flexDirection = "column-reverse";
   return bodyElt;
 }
-bodyChangeCss();
-
-let lol = true;
-
-console.log(lol);
-
-
-
-// on creer le nouveau lien a afficher
