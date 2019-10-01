@@ -198,22 +198,25 @@ function creerFormulaire() {
   submitElt.style.fontWeight = "bold";
   submitElt.style.boxShadow = "0px 1px 2px dimgrey";
   formElt.appendChild(submitElt);
-  //ici on annule ce qui ce passe par défault quand on clic sur le boutton submit. c'est a dire que le bouton ne cherchera pas à envoyé les //infos sur une page php
+  //ici on annule ce qui ce passe par défault quand on clic sur le boutton submit. c'est a dire
+  //que le bouton ne cherchera pas à envoyé les
+  //infos sur une page php
   formElt.addEventListener("submit", function(e) {
     e.preventDefault();
     var valueLien;
+    // la je déclare les variables qui vont contenir les valeurs inscrite dans le
+    // formulaire lors de l'événement submit
     let nom = document.getElementById("nom");
     let titre = document.getElementById("titre-lien");
     let lien = document.getElementById("lien");
-
+    //on vérifie si http:// est bien tapé sinon on le rajoute
       if (lien.value.indexOf("http://") === -1 && lien.value.indexOf("https://") === -1) {
         valueLien = "http://" + lien.value;
       } else {
           valueLien = lien.value;
         }
-    //la je déclare les varables qui vont contenir les valeurs inscrite dans le formulaire lors de l'événement submit
 
-//ici les valeur récupéré du formulaire son push dans listeLien
+// ici les valeur récupéré du formulaire son push dans listeLien
     listeLiens.push({
       titre: titre.value,
       url: valueLien,
@@ -256,7 +259,7 @@ function creerFormulaire() {
       sousDivTempEly.appendChild(texteDivTempElt);
       return divContainer;
     }
-    divTemporaire();
+  divTemporaire();
   divHidden();
   function divHidden() {
       intervalID = setTimeout(function(){
@@ -269,8 +272,6 @@ function creerFormulaire() {
       }, 2000);
     }
 })
-  //comparé si http:// ou https:// est bien écrit sinon rajouté http://
-
   return formElt;
 }
 // ici je change quelques propriété CSS sur body
@@ -280,3 +281,5 @@ function bodyChangeCss() {
   bodyElt.style.flexDirection = "column-reverse";
   return bodyElt;
 }
+// je m'excuse d'avance car je ne sait pas encore bien
+// optimisé mon code merci :)
