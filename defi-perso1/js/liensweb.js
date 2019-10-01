@@ -201,14 +201,22 @@ function creerFormulaire() {
   //ici on annule ce qui ce passe par défault quand on clic sur le boutton submit. c'est a dire que le bouton ne cherchera pas à envoyé les //infos sur une page php
   formElt.addEventListener("submit", function(e) {
     e.preventDefault();
-    //la je déclare les varables qui vont contenir les valeurs inscrite dans le formulaire lors de l'événement submit
+    var valueLien;
     let nom = document.getElementById("nom");
     let titre = document.getElementById("titre-lien");
     let lien = document.getElementById("lien");
+
+      if (lien.value.indexOf("http://") === -1 && lien.value.indexOf("https://") === -1) {
+        valueLien = "http://" + lien.value;
+      } else {
+          valueLien = lien.value;
+        }
+    //la je déclare les varables qui vont contenir les valeurs inscrite dans le formulaire lors de l'événement submit
+
 //ici les valeur récupéré du formulaire son push dans listeLien
     listeLiens.push({
       titre: titre.value,
-      url: lien.value,
+      url: valueLien,
       auteur: nom.value
     })
     //on fait disparaitre le formulaire
@@ -248,31 +256,21 @@ function creerFormulaire() {
       sousDivTempEly.appendChild(texteDivTempElt);
       return divContainer;
     }
-divTemporaire();
-divHidden();
-function divHidden() {
-  intervalID = setTimeout(function(){
-    let selectDiv = document.getElementById("temparyDiv");
-    selectDiv.innerHTML = "";
-    // ici je récupére le bouton ajouter un lien pour qu'il puisse réaparaitre que maintenant car il est inutilisable tant que la div
-    //temporaire ne réaparait pas
+    divTemporaire();
+  divHidden();
+  function divHidden() {
+      intervalID = setTimeout(function(){
+      let selectDiv = document.getElementById("temparyDiv");
+      selectDiv.innerHTML = "";
+      // ici je récupére le bouton ajouter un lien pour qu'il puisse réaparaitre que maintenant   car il est inutilisable tant que la div
+      //temporaire ne réaparait pas
         let buttonAjouterLienREfresh = document.getElementById("button-ajouter-lien");
         buttonAjouterLienREfresh.style.display = "block";
-  }, 2000);
-}
-  })
+      }, 2000);
+    }
+})
   //comparé si http:// ou https:// est bien écrit sinon rajouté http://
-  document.getElementById("lien").addEventListener("input", function(e) {
-    var httpElt = "http://, https://";
-    if (e.target.value.indexOf("http://") === -1) {
-      // le text saisi ne contiens pas http:// alors:
-      console.log("il n'y a pas de http://");
-    }
-    if (e.target.value.indexOf("https://") === -1) {
-      // le text saisi ne contiens pas http:// alors:
-      console.log("il n'y a pas de https://");
-    }
-  })
+
   return formElt;
 }
 // ici je change quelques propriété CSS sur body
