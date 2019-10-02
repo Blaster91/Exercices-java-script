@@ -3,6 +3,8 @@ var conteneurElt = document.getElementById('conteneur');
 var allSize = 40;
 var conteneurRect = conteneurElt.getBoundingClientRect();
 var playerRect = playerElt.getBoundingClientRect();
+var positionLeft = (playerElt.offsetLeft - allSize);
+var positionTop = (playerElt.offsetTop + allSize);
 
 
 // ajout d'un événement qui va récupéré les touches appuyer pour faire bouger le cube
@@ -33,8 +35,9 @@ var playerRect = playerElt.getBoundingClientRect();
                 playerElt.style.left = (playerElt.offsetLeft - allSize)+"px";
             }
           }
-          console.log("conteneurRect = left : " + conteneurRect.left + " top : " + conteneurRect.top + " right : " + conteneurRect.right + " bottom : " + conteneurRect.bottom);
-          console.log("playerRect = left : " + playerRect.left + " top : " + playerRect.top + " right : " + playerRect.right + " bottom : " + playerRect.bottom);
+
+          // console.log("conteneurRect = left : " + conteneurRect.left + " top : " + conteneurRect.top + " right : " + conteneurRect.right + " bottom : " + conteneurRect.bottom);
+          // console.log("playerRect = left : " + playerRect.left + " top : " + playerRect.top + " right : " + playerRect.right + " bottom : " + playerRect.bottom);
           conteneurRect = conteneurElt.getBoundingClientRect();
           playerRect = playerElt.getBoundingClientRect();
     });

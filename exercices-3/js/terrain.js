@@ -29,12 +29,13 @@ function creerMur(x, y, cassable){
       wall.push(murElt);
 }
 };
-for (var x = 0; x < numberWallX; x++) {
-  for (var y = 0; y < numberWallY; y++) {
-    creerMur(rnd(largeur) * allSize, rnd(hauteur) * allSize, rnd(2)-1);
-  }
-}
-
-function rnd(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
+creerMur(allSize * 2, allSize * 2, true);
+// for (var x = 0; x < numberWallX; x++) {
+//   for (var y = 0; y < numberWallY; y++) {
+//     creerMur(rnd(largeur) * allSize, rnd(hauteur) * allSize, rnd(2)-1);
+//   }
+// }
+//
+// function rnd(max) {
+//   return Math.floor(Math.random() * Math.floor(max));
+// }
