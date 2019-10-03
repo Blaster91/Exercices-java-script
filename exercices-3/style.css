@@ -64,9 +64,16 @@ justify-content: center;
   width: 40px;
   height: 40px;
 }
+<<<<<<< HEAD
 .enemies {
   height: 40px;
   width: 40px;
   background-color: blue;
+=======
+.enemies{
+  background-color: blue;
+  height: 40px;
+  width: 40px;
+>>>>>>> 5bfc5838687837b13915eeb07a60d4f4aa3dd980
   position: absolute;
 }

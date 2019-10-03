@@ -16,6 +16,7 @@ blastBottom.id = "blastBottom";
 var blastRight = document.createElement('div');
 blastRight.id = "blastRight";
 
+
 document.addEventListener("keydown", function (event){
 
   if(event.keyCode == 32){
@@ -55,9 +56,10 @@ function Explosion(){
     blastTop.style.height="40px";
     blastTop.style.width="40px";
     blastTop.style.position = "absolute";
-    console.log(positionLeft);
-    console.log(positionTop);
-    if (bombe.offsetTop + 40 == positionTop && bombe.offsetLeft == positionLeft){
+    console.log("bombe.offsetTop : " + bombe.offsetTop);
+    console.log("positionTop : " + positionTop);
+
+    if (bombe.offsetTop == positionTop && bombe.offsetLeft == positionLeft){
       player.style.display = "none";
     }
 
@@ -84,7 +86,6 @@ function Explosion(){
     blastRight.style.backgroundColor = "red";
     blastRight.style.top= bombe.offsetTop + "px";
     blastRight.style.left= bombe.offsetLeft + 40 + "px";
-    console.log(bombe.offsetLeft);
     blastRight.style.height="40px";
     blastRight.style.width="40px";
     blastRight.style.position = "absolute";
